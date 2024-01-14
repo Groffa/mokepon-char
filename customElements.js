@@ -33,20 +33,47 @@ customElements.define(
     }
 
     render() {
-      const boxes = (ar) =>
-        ar.map((s) => `<div class="box">${s}</div>`).join("");
-
       const r = Resistances[this.pokemonType];
+
+      const of = (displayname) => {
+        const prop = displayname.split(" ").join("");
+        const ar = r[prop];
+        return (
+          `<div class="weakness-panel">
+            <div class="name">${displayname}</div>
+            <div class="list ${prop.toLowerCase()}">` +
+          ar.map((s) => `<div class="box">${s}</div>`).join("") +
+          `</div>
+          </div>`
+        );
+      };
+
       this.innerHTML = `
         <pokemon-card-tmpl>
           <span slot="type">${this.pokemonType}</span>
           <span slot="icon"></span>
-          <span slot="superweak">${boxes(r.SuperWeak)}</span>
-          <span slot="noeffect">${boxes(r.NoEffect)}</span>
-          <span slot="notvery">${boxes(r.NotVery)}</span>
-          <span slot="super">${boxes(r.Super)}</span>
+          <span slot="superweak">${of("Super Weak")}</span>
+          <span slot="noeffect">${of("No Effect")}</span>
+          <span slot="notvery">${of("Not Very")}</span>
+          <span slot="super">${of("Super")}</span>
         </pokemon-card>
       `;
+    }
+  }
+);
+
+customElements.define(
+  "all-pokemon-cards",
+  class extends HTMLElement {
+    constructor() {
+      super();
+    }
+    connectedCallback() {
+      const ar = [];
+      for (const type in Resistances) {
+        ar.push(`<pokemon-card type="${type}"></pokemon-card>`);
+      }
+      this.innerHTML = ar.join("");
     }
   }
 );

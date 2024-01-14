@@ -9,6 +9,31 @@
         padding: 0;
         background: #fff;
       }
+      .weakness-panel {
+        display: flex;
+        align-items: center;
+      }
+      .weakness-panel .name {
+        font-weight: bold;
+        width: 7em;
+      }
+      .weakness-panel .list.super .box {
+        background-color: blue;
+        color: white;
+      }
+      .weakness-panel .list.notvery .box {
+        background-color: magenta;
+        color: black;
+      }
+      .weakness-panel .list.noeffect .box {
+        background-color: lightgray;
+        color: black;
+        text-decoration: line-through;
+      }
+      .weakness-panel .list.superweak .box {
+        background-color: pink;
+        color: black;
+      }
       .box {
         display: inline-block;
         padding: 2px 5px;
@@ -48,10 +73,6 @@
       </div>
     </template>
 
-    <pokemon-card type="grass">
-    </pokemon-card>
-
-    <pokemon-card type="fire">
-    </pokemon-card>
+    <all-pokemon-cards></all-pokemon-cards>
   </body>
 </html>
