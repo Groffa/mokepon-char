@@ -9,10 +9,49 @@
         padding: 0;
         background: #fff;
       }
-    </style>
-    <script src="chart.js"></script>
+      .box {
+        display: inline-block;
+        padding: 2px 5px;
+        margin: 2px 2px;
+        border: 1px solid green;
+        border-radius: 2px;
+      }
+      </style>
+      <script src="chart.js"></script>
+      <script src="customElements.js"></script>
   </head>
   <body>
+    <template id="pokemon-card-template">
+      <style>
+        .card {
+          display: flex;
+          gap: 10px;
+          padding: 10px;
+          margin: 10px;
+          border: 1px solid black;
+          border-radius: 5px;
+        }
+        .infopanel {
+          display: flex;
+          flex-direction: column;
+        }
+      </style>
+      <div class="card">
+        <div class="type"><slot name="type">TYPENAME</slot></div>
+        <div class="icon"><slot name="icon">ICON</slot></div>
+        <div class="infopanel">
+          <div class="superweak"><slot name="superweak">SUPERWEAK</slot></div>
+          <div class="noeffect"><slot name="noeffect">NO EFFECT</slot></div>
+          <div class="notvery"><slot name="notvery">NOT VERY</slot></div>
+          <div class="super"><slot name="super">SUPEREFFECTIVE</slot></div>
+        </div>
+      </div>
+    </template>
 
+    <pokemon-card type="grass">
+    </pokemon-card>
+
+    <pokemon-card type="fire">
+    </pokemon-card>
   </body>
 </html>

@@ -21,6 +21,10 @@ const T = {
   Fairy: "Fairy",
 };
 
+//
+// Note: missing piece of information is what types are super effective _against_ a type
+// (e.g. in its own information block), but that is calculated in addMissingPiece()
+//
 const Resistances = {
   [T.Grass]: {
     NoEffect: [],
@@ -122,22 +126,44 @@ const Resistances = {
   },
 };
 
-const VerifyTypeArray = (ar) => {
+const othersAreSuperEffectiveAgainstThis = (type) => {
+  const result = new Set();
+  for (const pokemonType in Resistances) {
+    const Other = Resistances[pokemonType];
+    if (Other.Super.some((item) => item === type)) {
+      result.add(pokemonType);
+    }
+  }
+  return [...result];
+};
+
+const addMissingPiece = () => {
+  for (const pokemonType in Resistances) {
+    Resistances[pokemonType].SuperWeak =
+      othersAreSuperEffectiveAgainstThis(pokemonType);
+  }
+};
+
+//
+// Below: verify typed-in information
+//
+
+const verifyTypeArray = (ar) => {
   ar.forEach((item) => {
     if (!T[item]) {
-      throw new TypeError('Resistance type "' + item + '" not recognized');
+      throw new TypeError('Pokemon type "' + item + '" not recognized');
     }
   });
 };
 
-const VerifyEntry = ({ NoEffect, NotVery, Super }) => {
-  return [NoEffect, NotVery, Super].every(VerifyTypeArray);
+const verifyEntry = ({ NoEffect, NotVery, Super }) => {
+  [NoEffect, NotVery, Super].every(verifyTypeArray);
 };
 
-const Verify = () => {
+const verify = () => {
   for (const pokemonType in Resistances) {
     try {
-      VerifyEntry(Resistances[pokemonType]);
+      verifyEntry(Resistances[pokemonType]);
     } catch (e) {
       console.error(
         "Pokemon type",
@@ -148,3 +174,6 @@ const Verify = () => {
     }
   }
 };
+
+verify();
+addMissingPiece();
