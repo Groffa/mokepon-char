@@ -4,34 +4,55 @@
     <meta charset="utf-8" />
     <title>Pokemon resistance chart</title>
     <style>
+      :root {
+        font-size: 18px;
+        font-family: monospace;
+        --super: blue;
+        --notvery: magenta;
+        --noeffect: lightgray;
+        --superweak: pink;
+      }
       html, body {
         margin: 0;
         padding: 0;
         background: #fff;
       }
+      all-pokemon-cards {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+      all-pokemon-cards pokemon-card {
+        flex: 1 0 550px;
+      }
       .weakness-panel {
         display: flex;
         align-items: center;
+        flex: 1;
       }
       .weakness-panel .name {
-        font-weight: bold;
-        width: 7em;
+        font-size: 0.8rem;
+        flex-basis: 5rem;
+        justify-content: flex-end;
+      }
+      .weakness-panel .list {
+        flex: 1;
       }
       .weakness-panel .list.super .box {
-        background-color: blue;
+        background-color: var(--super);
         color: white;
       }
       .weakness-panel .list.notvery .box {
-        background-color: magenta;
+        background-color: var(--notvery);
         color: black;
       }
       .weakness-panel .list.noeffect .box {
-        background-color: lightgray;
+        background-color: var(--noeffect);
         color: black;
         text-decoration: line-through;
       }
       .weakness-panel .list.superweak .box {
-        background-color: pink;
+        background-color: var(--superweak);
         color: black;
       }
       .box {
@@ -56,8 +77,15 @@
           border: 1px solid black;
           border-radius: 5px;
         }
+        .card .type {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100px;
+        }
         .infopanel {
           display: flex;
+          flex: 1;
           flex-direction: column;
         }
       </style>

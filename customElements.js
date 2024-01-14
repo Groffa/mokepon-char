@@ -38,6 +38,9 @@ customElements.define(
       const of = (displayname) => {
         const prop = displayname.split(" ").join("");
         const ar = r[prop];
+        if (!ar.length) {
+          return "";
+        }
         return (
           `<div class="weakness-panel">
             <div class="name">${displayname}</div>
