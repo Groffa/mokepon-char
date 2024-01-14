@@ -43,9 +43,9 @@ customElements.define(
         }
         return (
           `<div class="weakness-panel">
-            <div class="name">${displayname}</div>
+            <div class="name">${t(displayname)}</div>
             <div class="list ${prop.toLowerCase()}">` +
-          ar.map((s) => `<div class="box">${s}</div>`).join("") +
+          ar.map((s) => `<div class="box">${t(s)}</div>`).join("") +
           `</div>
           </div>`
         );
@@ -53,7 +53,7 @@ customElements.define(
 
       this.innerHTML = `
         <pokemon-card-tmpl>
-          <span slot="type">${this.pokemonType}</span>
+          <span slot="type">${t(this.pokemonType)}</span>
           <span slot="icon"></span>
           <span slot="superweak">${of("Super Weak")}</span>
           <span slot="noeffect">${of("No Effect")}</span>
