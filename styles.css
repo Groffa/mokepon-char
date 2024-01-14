@@ -1,0 +1,70 @@
+:root {
+  font-size: 16px;
+  font-family: monospace;
+  --super: blue;
+  --notvery: magenta;
+  --noeffect: lightgray;
+  --superweak: pink;
+
+  --page-width: 210mm;
+  --page-height: 297mm;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  /* border: 1px solid purple; */
+  width: var(--page-width);
+  height: var(--page-height);
+}
+
+all-pokemon-cards {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 5px 0;
+}
+all-pokemon-cards pokemon-card {
+  width: calc(var(--page-width) / 2);
+}
+
+.weakness-panel {
+  display: flex;
+  align-items: baseline;
+  flex: 1;
+}
+.weakness-panel .name {
+  font-size: 0.8rem;
+  flex-basis: 8rem;
+  /* justify-content: flex-end; */
+  text-align: right;
+}
+.weakness-panel .list {
+  flex: 1;
+}
+.weakness-panel .list.super .box {
+  background-color: var(--super);
+  color: white;
+}
+.weakness-panel .list.notvery .box {
+  background-color: var(--notvery);
+  color: black;
+}
+.weakness-panel .list.noeffect .box {
+  background-color: var(--noeffect);
+  color: black;
+  text-decoration: line-through;
+}
+.weakness-panel .list.superweak .box {
+  background-color: var(--superweak);
+  color: black;
+}
+
+.box {
+  display: inline-block;
+  padding: 0 2px;
+  margin: 2px 2px;
+  border: 1px solid green;
+  border-radius: 2px;
+}

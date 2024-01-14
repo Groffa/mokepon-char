@@ -53,7 +53,7 @@ customElements.define(
 
       this.innerHTML = `
         <pokemon-card-tmpl>
-          <span slot="type">${t(this.pokemonType)}</span>
+          <span slot="type">${t(this.pokemonType)} (${this.pokemonType})</span>
           <span slot="icon"></span>
           <span slot="superweak">${of("Super Weak")}</span>
           <span slot="noeffect">${of("No Effect")}</span>

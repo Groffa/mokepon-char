@@ -3,86 +3,29 @@
   <head>
     <meta charset="utf-8" />
     <title>Pokemon resistance chart</title>
-    <style>
-      :root {
-        font-size: 18px;
-        font-family: monospace;
-        --super: blue;
-        --notvery: magenta;
-        --noeffect: lightgray;
-        --superweak: pink;
-      }
-      html, body {
-        margin: 0;
-        padding: 0;
-        background: #fff;
-      }
-      all-pokemon-cards {
-        display: flex;
-        gap: 5px;
-        flex-wrap: wrap;
-      }
-      all-pokemon-cards pokemon-card {
-        flex: 1 0 550px;
-      }
-      .weakness-panel {
-        display: flex;
-        align-items: center;
-        flex: 1;
-      }
-      .weakness-panel .name {
-        font-size: 0.8rem;
-        flex-basis: 5rem;
-        justify-content: flex-end;
-      }
-      .weakness-panel .list {
-        flex: 1;
-      }
-      .weakness-panel .list.super .box {
-        background-color: var(--super);
-        color: white;
-      }
-      .weakness-panel .list.notvery .box {
-        background-color: var(--notvery);
-        color: black;
-      }
-      .weakness-panel .list.noeffect .box {
-        background-color: var(--noeffect);
-        color: black;
-        text-decoration: line-through;
-      }
-      .weakness-panel .list.superweak .box {
-        background-color: var(--superweak);
-        color: black;
-      }
-      .box {
-        display: inline-block;
-        padding: 2px 5px;
-        margin: 2px 2px;
-        border: 1px solid green;
-        border-radius: 2px;
-      }
-      </style>
-      <script src="i18n.js"></script>
-      <script src="chart.js"></script>
-      <script src="customElements.js"></script>
+    <link href="styles.css" rel="stylesheet" />
+    <script src="i18n.js"></script>
+    <script src="chart.js"></script>
+    <script src="customElements.js"></script>
   </head>
   <body>
     <template id="pokemon-card-template">
       <style>
         .card {
           display: flex;
-          gap: 10px;
-          padding: 10px;
-          margin: 10px;
+          flex-direction: column;
+          gap: 1px;
+          /* padding: 10px; */
+          /* margin: 10px; */
           border: 1px solid black;
           border-radius: 5px;
+          width: 100mm;
         }
         .card .type {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 100px;
+          /* width: 100px; */
         }
         .infopanel {
           display: flex;
