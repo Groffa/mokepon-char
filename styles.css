@@ -8,6 +8,19 @@
 
   --page-width: 210mm;
   --page-height: 297mm;
+
+  --card-per-row: 2;
+}
+
+@media (max-width: 375px) {
+  :root {
+    --page-width: 100vw;
+    --page-height: 100vh;
+    --card-per-row: 1;
+  }
+  all-pokemon-cards pokemon-card:last-child {
+    margin-bottom: 100px;
+  }
 }
 
 html, body {
@@ -26,7 +39,7 @@ all-pokemon-cards {
   gap: 5px 0;
 }
 all-pokemon-cards pokemon-card {
-  width: calc(var(--page-width) / 2);
+  width: calc(var(--page-width) / var(--card-per-row));
 }
 
 .weakness-panel {
