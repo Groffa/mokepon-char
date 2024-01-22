@@ -12,7 +12,7 @@
   --card-per-row: 2;
 }
 
-@media (max-width: 375px) {
+@media (max-width: 772px) {
   :root {
     --page-width: 100vw;
     --page-height: 100vh;
@@ -20,6 +20,9 @@
   }
   all-pokemon-cards pokemon-card:last-child {
     margin-bottom: 100px;
+  }
+  .infopanel {
+    background-color: red;
   }
 }
 
@@ -78,6 +81,12 @@ all-pokemon-cards pokemon-card {
   display: inline-block;
   padding: 0 2px;
   margin: 2px 2px;
-  border: 1px solid green;
+  border: 1px solid transparent;
   border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.box:hover {
+  opacity: 0.8;
 }

@@ -40,6 +40,7 @@ const setLang = (langCode) => {
         Object.keys(translations).join()
     );
   }
+  document.dispatchEvent(new CustomEvent("i18n", { detail: { langCode } }));
 };
 
 const t = (s) => {

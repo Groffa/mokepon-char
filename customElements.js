@@ -35,6 +35,8 @@ customElements.define(
     render() {
       const r = Resistances[this.pokemonType];
 
+      const linkBox = (s) => `<a href="#${s}" class="box">${t(s)}</a>`;
+
       const of = (displayname) => {
         const prop = displayname.split(" ").join("");
         const ar = r[prop];
@@ -45,15 +47,20 @@ customElements.define(
           `<div class="weakness-panel">
             <div class="name">${t(displayname)}</div>
             <div class="list ${prop.toLowerCase()}">` +
-          ar.map((s) => `<div class="box">${t(s)}</div>`).join("") +
+          ar.map(linkBox).join("") +
           `</div>
           </div>`
         );
       };
 
+      let title = t(this.pokemonType);
+      if (title !== this.pokemonType) {
+        title += ` (${this.pokemonType})`;
+      }
+
       this.innerHTML = `
-        <pokemon-card-tmpl>
-          <span slot="type">${t(this.pokemonType)} (${this.pokemonType})</span>
+        <pokemon-card-tmpl id="${this.pokemonType}">
+          <span slot="type">${title}</span>
           <span slot="icon"></span>
           <span slot="superweak">${of("Super Weak")}</span>
           <span slot="noeffect">${of("No Effect")}</span>
@@ -71,7 +78,25 @@ customElements.define(
     constructor() {
       super();
     }
+
+    onLangChanged(e) {
+      this.render();
+    }
+
     connectedCallback() {
+      document.addEventListener("i18n", this.onLangChanged.bind(this), {
+        passive: true,
+      });
+      if (this.isConnected) {
+        this.render();
+      }
+    }
+
+    disconnectedCallback() {
+      document.removeEventListener("i18n", this.onLangChanged);
+    }
+
+    render() {
       const ar = [];
       for (const type in Resistances) {
         ar.push(`<pokemon-card type="${type}"></pokemon-card>`);
